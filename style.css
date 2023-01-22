@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+    background-image: url('barcelona.jpg');
+    color:rgb(197, 180, 80);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100vh;
+    
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(0,0,0,.7);
+    height: 100vh;
+}
+
+.header {
+    padding: 50px 20px 30px 20px;
+}
+
+.header h1 {
+    font-size: 50px;
+    color:rgb(216, 181, 25);
+    text-shadow: 1px 3px rgba(0,0, 0,.9);
+}
+
+#select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    color: rgb(197, 180, 80);
+    outline: 0;
+    border-bottom: 2px solid burlywood;
+    border-right: 2px solid burlywood;
+    border-left: 2px solid burlywood;
+    border-radius: 20px solid burlywood;
+    
+
+}
+
+.city{
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-shadow: 1px 3px rgba(0,0, 0,.4);
+}
+
+.temp{
+    font-size: 100px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 5px rgba(0,0, 0,.1);
+}
+
+.description{
+    font-size: 25px;
+    margin-bottom: 10px;
+    text-shadow: 1px 3px rgba(0,0, 0,.7);
+}
+
+.wind{
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-shadow: 1px 3px rgba(0,0, 0,.8);
+}
+
+.follow{
+    font-size: 40px;
+    margin-top: 10px;
+    text-shadow: 1px 3px rgba(0,0, 0,.9);
+    width: 100%;
+}
