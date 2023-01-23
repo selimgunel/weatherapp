@@ -15,24 +15,24 @@ const wind = document.querySelector('.wind');
 // Eventler 
 
 //select list değiştiği zaman çalışacak event
-select.addEventListener("change", getCity);
+select.addEventListener("change", selectCity);
 
 //önümüzdeki günlerin hava tahmini için click eventi
 follow.addEventListener("click", getFollowingDays);
 
 
-function getCity(e) {
+function selectCity(e) {
     // Select list'de değişim olduğunda çalışacak fonksiyon
 
     if (select.options[select.selectedIndex].value == "barcelona"
         || "amsterdam" || "brugge" || "stockholm" || "prague") {
 
-        getBarcelona(select.options[select.selectedIndex].value);
+        getCity(select.options[select.selectedIndex].value);
     }
 
 }
 
-function getBarcelona(cityname) {
+function getCity(cityname) {
     
     // Seçilen şehre göre arkaplan değişimi ve api'den bilgilerin getirilmesini sağlayan fonksiyon
 
