@@ -9,6 +9,11 @@ const city = document.querySelector('.city');
 const temp = document.querySelector('.temp');
 const desc = document.querySelector('.description');
 const wind = document.querySelector('.wind');
+const barcelona = {lat : 41.38, lon : 2.17}
+const amsterdam = {lat : 52.37, lon : 4.89}
+const brugge = {lat : 51.20, lon : 3.22}
+const stockholm = {lat : 59.32, lon : 18.07}
+const prague = {lat : 50.08, lon: 14.42}
 
 
 
@@ -27,12 +32,12 @@ function getCity(e) {
     if (select.options[select.selectedIndex].value == "barcelona"
         || "amsterdam" || "brugge" || "stockholm" || "prague") {
 
-        getBarcelona(select.options[select.selectedIndex].value);
+        getInfo(select.options[select.selectedIndex].value);
     }
 
 }
 
-function getBarcelona(cityname) {
+function getInfo(cityname) {
     
     // Seçilen şehre göre arkaplan değişimi ve api'den bilgilerin getirilmesini sağlayan fonksiyon
 
@@ -69,135 +74,64 @@ function getFollowingDays(e) {
     // önümüzdeki günlerdeki hava tahmini için şehir sorgulanmasının yapılması 
     // ve api'den data isteğini gerçekleştiren fonksiyon
 
-    temp.setAttribute('style','font-size: 100px;');
     
 
-    if (select.options[select.selectedIndex].value == "barcelona") {
-        
-        let api = `${url}forecast?lat=41.38&lon=2.17&appid=${key}&units=metric`;
+    const selectedCity = select.options[select.selectedIndex].value;
+
+
+    if (selectedCity === "barcelona"){
+        const api =  `${url}forecast?lat=${barcelona.lat}&lon=${barcelona.lon}&appid=${key}&units=metric`;
         fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingBarcelona);
-            
+        .then(data => {
+            return data.json();
+        })
+        .then(followingInfo);
+   
+    }
+    if (selectedCity === "amsterdam"){
+        const api =  `${url}forecast?lat=${amsterdam.lat}&lon=${amsterdam.lon}&appid=${key}&units=metric`;
+        fetch(api)
+        .then(data => {
+            return data.json();
+        })
+        .then(followingInfo);
+    }
+    if (selectedCity === "brugge"){
+        const api =  `${url}forecast?lat=${brugge.lat}&lon=${brugge.lon}&appid=${key}&units=metric`;
+        fetch(api)
+        .then(data => {
+            return data.json();
+        })
+        .then(followingInfo);
+    }
+    if (selectedCity === "stockholm"){
+        const api =  `${url}forecast?lat=${stockholm.lat}&lon=${stockholm.lon}&appid=${key}&units=metric`;
+        fetch(api)
+        .then(data => {
+            return data.json();
+        })
+        .then(followingInfo);
+    }
+    if (selectedCity === "prague"){
+        const api =  `${url}forecast?lat=${prague.lat}&lon=${prague.lon}&appid=${key}&units=metric`;
+        fetch(api)
+        .then(data => {
+            return data.json();
+        })
+        .then(followingInfo);
     }
 
-    if (select.options[select.selectedIndex].value == "amsterdam") {
-        
-        let api = `${url}forecast?lat=52.37&lon=4.89&appid=${key}&units=metric`;
-        fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingAmsterdam);
-            
-    }
-    if (select.options[select.selectedIndex].value == "brugge") {
-        
-        let api = `${url}forecast?lat=51.20&lon=3.22&appid=${key}&units=metric`;
-        fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingBrugge);
-            
-    }
-    if (select.options[select.selectedIndex].value == "stockholm") {
-        
-        let api = `${url}forecast?lat=51.20&lon=3.22&appid=${key}&units=metric`;
-        fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingStockholm);
-            
-    }
-    if (select.options[select.selectedIndex].value == "stockholm") {
-        
-        let api = `${url}forecast?lat=59.32&lon=18.07&appid=${key}&units=metric`;
-        fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingStockholm);
-            
-    }
-    if (select.options[select.selectedIndex].value == "prague") {
-        
-        let api = `${url}forecast?lat=50.08&lon=14.42&appid=${key}&units=metric`;
-        fetch(api)
-            .then(data => {
-                return data.json();
-            })
-            .then(followingPrague);
-            
-    }
+    temp.setAttribute('style','font-size: 100px;');
 
 }
 
-function followingBarcelona(nextdays){
-    // Barcelona şehri için önümüzdeki günlerdeki hava tahmininin html elementlerine yazdırılması
+function followingInfo (nextdays) {
+    desc.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
+    desc.setAttribute('style','font-size: 32px;');
 
-    console.log(nextdays);
-
-    follow.textContent = "";
-    wind.textContent = "";
-
-    temp.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 50px;');
-
-    desc.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 35px;');
-}
-
-function followingAmsterdam(nextdays){
-    // Amsterdam şehri için önümüzdeki günlerdeki hava tahmininin html elementlerine yazdırılması
+    wind.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
+    wind.setAttribute('style','font-size: 28px;');
 
     follow.textContent = "";
-    wind.textContent = "";
-
-    temp.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 50px;');
-
-    desc.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 35px;');
-}
-
-function followingBrugge(nextdays){
-    // Brugge şehri için önümüzdeki günlerdeki hava tahmininin html elementlerine yazdırılması
-
-    follow.textContent = "";
-    wind.textContent = "";
-
-    temp.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 50px;');
-
-    desc.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 35px;');
-}
-
-function followingStockholm(nextdays){
-    // Stockholm şehri için önümüzdeki günlerdeki hava tahmininin html elementlerine yazdırılması
-
-    follow.textContent = "";
-    wind.textContent = "";
-
-    temp.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 50px;');
-
-    desc.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 35px;');
-}
-function followingPrague(nextdays){
-    // Prag şehri için önümüzdeki günlerdeki hava tahmininin html elementlerine yazdırılması
-
-    follow.textContent = "";
-    wind.textContent = "";
-
-    temp.textContent = "Tomorrow " + Math.round(nextdays.list[0].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 50px;');
-
-    desc.textContent = "The day after tomorrow " + Math.round(nextdays.list[1].main.temp) + " °C";
-    temp.setAttribute('style','font-size: 35px;');
+    temp.textContent = "";
 }
