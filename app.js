@@ -77,49 +77,39 @@ function getFollowingDays(e) {
     
 
     const selectedCity = select.options[select.selectedIndex].value;
+    
 
+    const barcelonalat = barcelona.lat;
+    const barcelonalon = barcelona.lon;
+    const amsterdamlat = amsterdam.lat;
+    const amsterdamlon = amsterdam.lon;
+    const bruggelat = brugge.lat;
+    const bruggelon = brugge.lon;
+    const stockholmlat = stockholm.lat;
+    const stockholmlon = stockholm.lon;
+    const praguelat = prague.lat;
+    const praguelon = prague.lon;
 
-    if (selectedCity === "barcelona"){
-        const api =  `${url}forecast?lat=${barcelona.lat}&lon=${barcelona.lon}&appid=${key}&units=metric`;
-        fetch(api)
-        .then(data => {
-            return data.json();
-        })
-        .then(followingInfo);
-   
-    }
-    if (selectedCity === "amsterdam"){
-        const api =  `${url}forecast?lat=${amsterdam.lat}&lon=${amsterdam.lon}&appid=${key}&units=metric`;
-        fetch(api)
-        .then(data => {
-            return data.json();
-        })
-        .then(followingInfo);
-    }
-    if (selectedCity === "brugge"){
-        const api =  `${url}forecast?lat=${brugge.lat}&lon=${brugge.lon}&appid=${key}&units=metric`;
-        fetch(api)
-        .then(data => {
-            return data.json();
-        })
-        .then(followingInfo);
-    }
-    if (selectedCity === "stockholm"){
-        const api =  `${url}forecast?lat=${stockholm.lat}&lon=${stockholm.lon}&appid=${key}&units=metric`;
-        fetch(api)
-        .then(data => {
-            return data.json();
-        })
-        .then(followingInfo);
-    }
-    if (selectedCity === "prague"){
-        const api =  `${url}forecast?lat=${prague.lat}&lon=${prague.lon}&appid=${key}&units=metric`;
-        fetch(api)
-        .then(data => {
-            return data.json();
-        })
-        .then(followingInfo);
-    }
+    const lat = (selectedCity === "barcelona") ? barcelonalat : null ||
+     (selectedCity === "amsterdam") ? amsterdamlat : null ||
+     (selectedCity === "brugge") ? bruggelat : null ||
+     (selectedCity === "stockholm") ? stockholmlat : null ||
+     (selectedCity === "prague") ? praguelat : null;
+
+    const lon = (selectedCity === "barcelona") ? barcelonalon : null ||
+    (selectedCity === "amsterdam") ? amsterdamlon : null ||
+    (selectedCity === "brugge") ? bruggelon : null ||
+    (selectedCity === "stockholm") ? stockholmlon : null ||
+    (selectedCity === "prague") ? praguelon : null;;
+
+    const api = `${url}forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
+
+    fetch(api)
+    .then(data => {
+        return data.json()
+    })
+    .then(followingInfo);
+
 
     temp.setAttribute('style','font-size: 100px;');
 
