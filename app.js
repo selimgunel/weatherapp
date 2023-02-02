@@ -41,6 +41,8 @@ follow.addEventListener("click", getFollowingDays);
 //back tuşuna basıldığında önceki sayfayı yükleyecek event
 back.addEventListener("click",getCity);
 
+addEventListener("DOMContentLoaded",getCity);
+
 
 function getCity(e) {
     // Select list'de değişim olduğunda çalışacak fonksiyon
