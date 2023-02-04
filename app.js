@@ -26,8 +26,12 @@ const coordinates = {
     
 }
 
+// let cityname = String(select.options[select.selectedIndex].value);
+
+
+
 tomorrow.style.display = "none";
-firstbuton.style.display = "none";
+// firstbuton.style.display = "none";
 
 
 // Eventler
@@ -44,24 +48,28 @@ back.addEventListener("click",getCity);
 addEventListener("DOMContentLoaded",getCity);
 
 
-function getCity(e) {
-    // Select list'de değişim olduğunda çalışacak fonksiyon
-
-    if (select.options[select.selectedIndex].value == "barcelona"
-        || "amsterdam" || "brugge" || "stockholm" || "prague") {
-
-        getInfo(select.options[select.selectedIndex].value);
-    }
-
-    today.style.display = "block";
-    tomorrow.style.display = "none";
-    firstbuton.style.display = "block";
-
+function getCity(e){
+   
+ getInfo(select.options[select.selectedIndex].value);
 }
+
+
+
+
+
+
 
 function getInfo(cityname) {
     
     // Seçilen şehre göre arkaplan değişimi ve api'den bilgilerin getirilmesini sağlayan fonksiyon
+
+
+    
+    stateChange("today");
+    
+
+    
+    
 
     body.style.backgroundImage = `url('${cityname}.jpg')`;
 
@@ -71,6 +79,8 @@ function getInfo(cityname) {
             return data.json();
         })
         .then(info);
+
+        
 
 }
 
@@ -92,7 +102,7 @@ function getFollowingDays(e) {
     // önümüzdeki günlerdeki hava tahmini için şehir sorgulanmasının yapılması 
     // ve api'den data isteğini gerçekleştiren fonksiyon
 
-    stateChange();
+    stateChange("tomorrow");
 
     const selectedCity = select.options[select.selectedIndex].value;
 
@@ -118,15 +128,15 @@ function followingInfo (nextdays) {
 }
 
 
-function stateChange(){
-    state = "tomorrow";
+function stateChange(state){
+    
 
     if(state === "tomorrow"){
         tomorrow.style.display = "block";
         today.style.display = "none";
         
         
-    }else{
+    }else if(state === "today"){
         tomorrow.style.display = "none";
         today.style.display = "block";
         

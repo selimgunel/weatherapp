@@ -9,9 +9,7 @@ body {
     font-family: Helvetica, sans-serif;
     background-image: url('barcelona.jpg');
     color:rgb(197, 180, 80);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     height: 100vh;
     align-items: center;
     
@@ -109,7 +107,7 @@ body {
 
 .othertomorrow {
     font-size: 30px;
-    margin-bottom: 231px;
+    margin-bottom: 240px;
     text-shadow: 1px 3px rgba(0,0, 0,.1);
     font-weight: 700;
 }
